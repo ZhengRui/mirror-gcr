@@ -1,0 +1,24 @@
+language: bash
+
+services:
+  - docker
+
+env:
+  global:
+    - DOCKER_HUB=zerry
+
+before_script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+script:
+  - echo "start pull and retag and push"
+  - |
+    for image in $(cat img-list.txt)
+    do
+      image_name=${image##*/}
+      image_name=${image_name%@*}
+      docker pull $image
+      docker tag $image $DOCKER_HUB/$image_name
+      docker push $DOCKER_HUB/$image_name
+    done
+
