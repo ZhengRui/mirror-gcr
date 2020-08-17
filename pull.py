@@ -50,7 +50,7 @@ repos = {
         ), (
             2,
             'gcr.io/kubeflow-images-public/ingress-setup',
-            'zerry/kubeflow-images-public.kubernetes-sigs.application',
+            'zerry/kubeflow-images-public.ingress-setup',
             'latest'
         ), (
             3,
@@ -180,15 +180,23 @@ def pull():
         # check if exists
         tag_ = os.popen(f"docker images -a | grep {en_repo} | awk '{{print $2}}'").read().strip()
         if tag_ == tag:
+            print(f'{en_repo}:{tag} already downloaded, skip!')
             continue
 
-        os.system(f"docker pull {cn_repo}:{tag}")
-        os.system(f"docker tag {cn_repo}:{tag} {en_repo}:{tag}")
-        os.system(f"docker rmi {cn_repo}:{tag}")
+        cmd = f"docker pull {cn_repo}:{tag}"
+        print(cmd)
+        os.system(cmd)
+        cmd = f"docker tag {cn_repo}:{tag} {en_repo}:{tag}"
+        print(cmd)
+        os.system(cmd)
+        cmd = f"docker rmi {cn_repo}:{tag}"
+        print(cmd)
+        os.system(cmd)
 
         tag_ = os.popen(f"docker images -a | grep {en_repo} | awk '{{print $2}}'").read().strip()
         assert tag_ == tag
 
+    print('Done!')
 
 if __name__ == '__main__':
     pull()
