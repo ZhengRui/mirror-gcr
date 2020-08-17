@@ -1,1 +1,2 @@
 gcr.io/k8s-minikube/kicbase:v0.0.10
+gcr.io/kubeflow-images-public/kubernetes-sigs/application:1.0-beta
