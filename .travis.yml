@@ -15,7 +15,7 @@ script:
   - |
     for image in $(cat img-list.txt)
     do
-      image_name=${image##*/}
+      image_name=${image#*/}
       image_name=${image_name%@*}
       docker pull $image
       docker tag $image $DOCKER_HUB/$image_name
