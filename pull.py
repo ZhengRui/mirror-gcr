@@ -176,25 +176,31 @@ repos = {
 
 def pull():
 
-    for i, en_repo, cn_repo, tag in repos['kubeflow']:
-        # check if exists
-        tag_ = os.popen(f"docker images -a | grep {en_repo} | awk '{{print $2}}'").read().strip()
-        if tag_ == tag:
-            print(f'{en_repo}:{tag} already downloaded, skip!')
-            continue
+    todo = list(range(len(repos['kubeflow'])))
+    while todo:
+        for i, en_repo, cn_repo, tag in repos['kubeflow']:
+            # check if exists
+            tag_ = os.popen(f"docker images -a | grep {en_repo} | awk '{{print $2}}'").read().strip()
+            if tag_ == tag:
+                print(f'{en_repo}:{tag} already downloaded, skip!')
+                todo.remove(i)
+                continue
 
-        cmd = f"docker pull {cn_repo}:{tag}"
-        print(cmd)
-        os.system(cmd)
-        cmd = f"docker tag {cn_repo}:{tag} {en_repo}:{tag}"
-        print(cmd)
-        os.system(cmd)
-        cmd = f"docker rmi {cn_repo}:{tag}"
-        print(cmd)
-        os.system(cmd)
+            cmd = f"docker pull {cn_repo}:{tag}"
+            print(cmd)
+            os.system(cmd)
+            cmd = f"docker tag {cn_repo}:{tag} {en_repo}:{tag}"
+            print(cmd)
+            os.system(cmd)
+            cmd = f"docker rmi {cn_repo}:{tag}"
+            print(cmd)
+            os.system(cmd)
 
-        tag_ = os.popen(f"docker images -a | grep {en_repo} | awk '{{print $2}}'").read().strip()
-        assert tag_ == tag
+            tag_ = os.popen(f"docker images -a | grep {en_repo} | awk '{{print $2}}'").read().strip()
+            if tag_ == tag:
+                todo.remove(i)
+            else:
+                print(f"{en_repo}:{tag} failed, will retry later!")
 
     print('Done!')
 
