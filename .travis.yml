@@ -25,10 +25,12 @@ script:
       # docker hub
       docker tag $image $DOCKER_HUB/$image_name
       docker push $DOCKER_HUB/$image_name
+      echo "push to $DOCKER_HUB/$image_name done!"
 
       # aliyun
       docker tag $image $ALI_REGISTRY/$image_name
       docker push $ALI_REGISTRY/$image_name
+      echo "push to $ALI_REGISTRY/$image_name done!"
 
     done
 
