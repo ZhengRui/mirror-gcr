@@ -179,6 +179,9 @@ def pull():
     todo = [each[0] for each in repos['kubeflow']]
     while todo:
         for i, en_repo, cn_repo, tag in repos['kubeflow']:
+            if i not in todo:
+                continue
+
             cn_repo = 'registry.cn-hongkong.aliyuncs.com/' + cn_repo
             # check if exists locally
             tag_ = os.popen(f"docker images -a | grep {en_repo} | awk '{{print $2}}'").read().strip()
