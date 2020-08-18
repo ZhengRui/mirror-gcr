@@ -184,7 +184,7 @@ def pull():
 
             cn_repo = 'registry.cn-hongkong.aliyuncs.com/' + cn_repo
             # check if exists locally
-            tag_ = os.popen(f"docker images -a | grep {en_repo} | awk '{{print $2}}'").read().strip()
+            tag_ = os.popen(f"docker images -a | grep '^{en_repo} ' | awk '{{print $2}}'").read().strip()
             if tag_ == tag:
                 print(f'{en_repo}:{tag} already downloaded, skip!')
                 todo.remove(i)
@@ -200,7 +200,7 @@ def pull():
             print(cmd)
             os.system(cmd)
 
-            tag_ = os.popen(f"docker images -a | grep {en_repo} | awk '{{print $2}}'").read().strip()
+            tag_ = os.popen(f"docker images -a | grep '^{en_repo} ' | awk '{{print $2}}'").read().strip()
             if tag_ == tag:
                 todo.remove(i)
             else:
