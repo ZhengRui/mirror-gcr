@@ -6,7 +6,7 @@ services:
 env:
   global:
     - DOCKER_HUB=zerry
-    - ALI_REGISTRY=registry.cn-hangzhou.aliyuncs.com/zerry
+    - ALI_REGISTRY=registry.us-west-1.aliyuncs.com/zerry
 
 before_script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
