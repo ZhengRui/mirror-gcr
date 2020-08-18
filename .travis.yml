@@ -6,9 +6,11 @@ services:
 env:
   global:
     - DOCKER_HUB=zerry
+    - ALI_REGISTRY=registry.cn-hangzhou.aliyuncs.com/zerry
 
 before_script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$ALI_PASSWORD" | docker login registry.cn-hangzhou.aliyuncs.com -u "$ALI_USERNAME" --password-stdin
 
 script:
   - echo "start pull and retag and push"
@@ -19,7 +21,14 @@ script:
       image_name=${image_name%@*}
       image_name=${image_name//\//.}
       docker pull $image
+
+      # docker hub
       docker tag $image $DOCKER_HUB/$image_name
       docker push $DOCKER_HUB/$image_name
+
+      # aliyun
+      docker tag $image $ALI_REGISTRY/$image_name
+      docker push $ALI_REGISTRY/$image_name
+
     done
 
