@@ -176,7 +176,7 @@ repos = {
 
 def pull():
 
-    todo = list(range(len(repos['kubeflow'])))
+    todo = [each[0] for each in repos['kubeflow']]
     while todo:
         for i, en_repo, cn_repo, tag in repos['kubeflow']:
             cn_repo = 'registry.cn-hongkong.aliyuncs.com/' + cn_repo
