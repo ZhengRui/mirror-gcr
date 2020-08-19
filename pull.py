@@ -167,6 +167,16 @@ repos = {
             'gcr.io/kubeflow-images-public/tf_operator',
             'zerry/kubeflow-images-public.tf_operator',
             'v1.0.0-g92389064'
+        ), (
+            26,
+            'gcr.io/kubeflow-images-public/admission-webhook',
+            'zerry/kubeflow-images-public.admission-webhook',
+            'v1.0.0-gaf96e4e3'
+        ), (
+            27,
+            'gcr.io/kubeflow-images-public/kfam',
+            'zerry/kubeflow-images-public.kfam',
+            'v1.0.0-gf3e09203'
         ),
 
     ],
