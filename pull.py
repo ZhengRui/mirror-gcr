@@ -177,6 +177,21 @@ repos = {
             'gcr.io/kubeflow-images-public/kfam',
             'zerry/kubeflow-images-public.kfam',
             'v1.0.0-gf3e09203'
+        ), (
+            28,
+            'mysql',
+            'zerry/mysql',
+            '8'
+        ), (
+            29,
+            'mysql',
+            'zerry/mysql',
+            '8.0.3'
+        ), (
+            30,
+            'minio/minio',
+            'zerry/minio',
+            'RELEASE.2018-02-09T22-40-05Z'
         ),
 
     ],
