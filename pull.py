@@ -192,6 +192,11 @@ repos = {
             'minio/minio',
             'zerry/minio',
             'RELEASE.2018-02-09T22-40-05Z'
+        ), (
+            31,
+            'gcr.io/kubeflow-images-public/tensorflow-1.14.0-notebook-cpu',
+            'zerry/kubeflow-images-public.tensorflow-1.14.0-notebook-cpu',
+            'v-base-ef41372-1177829795472347138'
         ),
 
     ],
