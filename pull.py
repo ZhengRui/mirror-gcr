@@ -197,7 +197,17 @@ repos = {
             'gcr.io/kubeflow-images-public/tensorflow-1.14.0-notebook-cpu',
             'zerry/kubeflow-images-public.tensorflow-1.14.0-notebook-cpu',
             'v-base-ef41372-1177829795472347138'
-        ),
+        ), (
+            32,
+            'gcr.io/kubeflow-images-public/tensorflow-2.1.0-notebook-cpu',
+            'zerry/kubeflow-images-public.tensorflow-2.1.0-notebook-cpu',
+            '1.0.0'
+        ), (
+            33,
+            'gcr.io/kubeflow-images-public/tensorflow-2.1.0-notebook-gpu',
+            'zerry/kubeflow-images-public.tensorflow-2.1.0-notebook-gpu',
+            '1.0.0'
+        )
 
     ],
 

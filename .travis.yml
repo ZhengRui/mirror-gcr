@@ -15,7 +15,7 @@ before_script:
 script:
   - echo "start pull and retag and push"
   - |
-    for image in $(tail -1 img-list.txt)
+    for image in $(tail -2 img-list.txt)
     do
       image_name=${image#*/}
       image_name=${image_name%@*}
